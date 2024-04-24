@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탭 컨텐츠 실습</title>
+  <style>
+    .tab_con2{
+      width: 600px; height: 600px; border: 1px solid #333; 
+      position: relative;
+    }
+    .tab_con2 > ul{
+      margin: 0px; padding: 0px; display: flex;
+    }
+    
+    /*a 태그 이미지 위치들*/
+    .tab_con2 > ul>li a{bottom: 15px;}
+    .tab_con2 > ul>li:first-child a{left: 5%;}
+    .tab_con2 > ul>li:nth-child(2) a{left: 30%;}
+    .tab_con2 > ul>li:nth-child(3) a{right: 30%;}
+    .tab_con2 > ul>li:last-child a{right: 5%;}
+
+
+    .tab_con2 > ul>li{
+      /* width: 30%; */
+      list-style: none;
+      text-align: center;
+    }
+    .tab_con2 > ul>li>a{background: crimson;
+
+      height: 100px;
+      position: absolute;
+    }
+    .tab_con2 > ul>li>a:focus{border: 1px solid #333;}
+    .tab_con2 > ul>li>a>img{width: 100px;height: 100px;}
+
+    /*컨텐츠 서식*/
+    .tab_con2 div{
+      display: none;
+      width: 100%;
+      position: absolute;
+      top: 0px;
+    }
+
+
+    li.on2 > div{display: block;}
+
+
+  </style>
+</head>
+<body>
+  <article class="tab_con2">
+    <ul>
+      <li class="on2">
+        <a href="#" title="사진 1" ><img src="./image/tab1.jpg" alt="1"></a>
+        <div ><img src="./image/tab1.jpg" alt="1"></div>
+      </li>
+      <li >
+        <a href="#" title="사진2" ><img src="./image/tab2.jpg" alt="2"></a>
+        <div ><img src="./image/tab2.jpg" alt="2"></div>
+      </li>
+      <li >
+        <a href="#" title="사진3" ><img src="./image/tab3.jpg" alt="3"></a>
+        <div ><img src="./image/tab3.jpg" alt="3"></div>
+      </li>
+      <li >
+        <a href="#" title="사진4" ><img src="./image/tab4.jpg" alt="4"></a>
+        <div ><img src="./image/tab4.jpg" alt="4"></div>
+      </li>
+    </ul>
+  </article>
+  <script>
+    const tabList = document.querySelectorAll('.tab_con2 li');
+
+    for(let i =0; i<=tabList.length; i++){
+      tabList[i].querySelector('a').addEventListener('click',function(e){
+        e.preventDefault(); //새로고침 방지 == a태그의 이벤트를 무력화 시켜줌
+        // window.alert('click');
+        for(let j =0; j<tabList.length; j++){
+          tabList[j].classList.remove('on2');
+          this.classList.remove('on2');
+        }
+        this.parentNode.classList.add('on2');
+      })
+    }
+
+
+  </script>
+  
+</body>
+</html>

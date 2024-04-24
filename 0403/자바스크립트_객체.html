@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트_객체</title>
+  <style>
+    span{font-weight: bold;}
+    .txt01{color: blue;}
+    .txt02{color: red;}
+    .txt03{color: green;}
+  </style>
+</head>
+<body>
+  <h2>자바스크립트_객체(object)</h2>
+  <dl>
+    <dt>객체란</dt>
+    <dd>1. 이름 (key)과 값(value)로 구성된 속성을 담아놓은 컨테이너 이다.</dd>
+    <dd>2. 객체에 변수를 선언하면 속성(property)을 사용할 수 있다. 예)documnet.getElementById('아이디명');</dd>
+    <dd>3. 객체에 함수를 선언하면 메서드(method)를 사용할 수 있다. 예)documnet.write('내용출력');</dd>
+  </dl>
+
+  <h3>1. 객체의 종류</h3>
+  <p>객체는 내장객체와 사용자 정의 객체로 분류된다. 내장 객체는 자바스크립트에 미리 정해놓은 객체이다.</p>
+  <ul>
+    <li>문서객체(document)</li>
+    <li>윈도우, 브라우저 객체(window)</li>
+    <li>수학(Math)객체</li>
+    <li>날짜 (Date)</li>
+    <li>배열 (Array)</li>
+    <li>문자열 (String)</li>
+  </ul>
+  <h3>2. 사용자 정의 객체 - 내장겍체를 제외한 사용자가 원하는 내용을 토대로 직접 객체를 선언하여 작성하는 방법</h3>
+
+  <div>
+  <fieldset>
+    <legend>휴대폰 정보 입력하기</legend>
+    <p><label for="company">제조회사 :</label><input type="text" id="company"></p>
+    <p><label for="model">모델명 :</label><input type="text" id="model"></p>
+    <p><label for="color">색상명 :</label><input type="text" id="color"></p>
+    <input type="button" value="입력한 정보 출력히가(신청하기 or 주문하기)" id="order_btn">
+  </fieldset>
+</div>
+
+<p>출력 예) 나의 핸드폰 제조회사는 '000'이고 모델명은 '000'이며, 색상은'000'입니다.</p>
+<p id="result"></p>
+
+<h3>실습 1 . 개인정보 입력</h3>
+
+<div>
+<fieldset>
+  <legend>개인정보 입력</legend>
+  <p><label for="fname">성 : </label><input type="text" id="fname" placeholder="성을 입력하세요" maxlength="2"></p>
+  <p><label for="lname">이름 : </label><input type="text" id="lname" placeholder="이름을 입력하세요" maxlength="4"></p>
+  <p><label for="age">나이 : </label><input type="number" id="age" maxlength="3"></p>
+  <p><label for="cen">키 : </label><input type="number" id="cen" maxlength="3"></p>
+  <p><label for="weight">몸무게 : </label><input type="number" id="weight" maxlength="3"></p>
+
+  <input type="button" value="정보입력완료" id="order_btn2">
+  <input type="reset" value="입력취소" id="order_btn_x">
+</fieldset>
+</div>
+<p id="rresult"></p>
+
+
+<script>
+  //이방법 말고도 let fn ln age cen w 를 한번에 변수 입력해가지고 let privacy={fname =fn , lname = ln,,,이런식으로 넣는다} innerHTML에 쓴느건 똑같이 privacy.fname 쓰면됨 근데 쌤 정답에는 rresult.innerHTML =``이렇게 썻음
+  //실습 1
+  let privacy = new Object();
+
+  //정보입력완료 함수
+  const btn2 = document.getElementById('order_btn2');
+  btn2.addEventListener('click',function(){
+    const fn = document.getElementById('fname').value;
+    const ln = document.getElementById('lname').value;
+    const age = document.getElementById('age').value;
+    const cen = document.getElementById('cen').value;
+    const w = document.getElementById('weight').value;
+
+    privacy.fname = fn;
+    privacy.lname = ln;
+    privacy.age = age;
+    privacy.cen = cen;
+    privacy.weight = w;
+
+    document.getElementById('rresult').innerHTML = `${privacy.fname} ${privacy.lname} 이고 나이는${privacy.age} 키는${privacy.cen} 몸무게는 ${privacy.weight} 입니다`;
+  })
+
+  //입력취소 함수
+  const btnx = document.getElementById('order_btn_x');
+  btnx.addEventListener('click',function(){
+    // location.reload()
+    document.getElementById('fname').value="";
+    document.getElementById('lname').value="";
+    document.getElementById('age').value="";
+    document.getElementById('cen').value="";
+    document.getElementById('weight').value="";
+    rresult.innerHTML="";
+  })
+
+
+
+
+
+
+
+  //1. 사용자 정의 객체
+  // 객체명 = new Object();
+  let phone = new Object();
+
+  
+  const btn = document.getElementById('order_btn');//버튼 변수
+  btn.addEventListener('click',function(){
+    const c = document.getElementById('company').value;//입력한 값을 저장
+    const m =document.getElementById('model').value;
+    const color = document.getElementById('color').value;
+    
+    phone.company =c;//애플 
+    phone.model =m;//아이폰
+    phone.color =color;//화이트
+
+    //객체 출력하기
+    document.getElementById('result').innerHTML = `나의 핸드폰 제조회사는 <span class="txt03"> ${phone.company} </span>이고 모델명은<span class='txt01'> ${phone.model}</span> 이며, 색상은<span class='txt02'>${phone.color}</span>입니다.`;
+  });
+
+
+</script>
+</body>
+</html>

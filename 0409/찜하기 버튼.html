@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    label{
+      display: inline-block;
+      width: 127px;
+      height: 111px;
+      background-image: url(./6일차\ 프로토타입\ 인터랙션.jpg);
+      text-indent: -9999px;
+      cursor: pointer;
+    }
+    #toggle{display: none; }
+    /*체크박스가 체크가 되면 바로뒤 동생 label 배경이미지 위치를 변경하여 빨강하트가 나오게*/
+    #toggle:checked + label{
+      background-position: -143px 0px;
+    }
+  </style>
+</head>
+<body>
+  <h2>체크박스를 활용한 찜하기 버튼 구현하기</h2>
+  <ul>
+    <li>하트모양의 이미지를 피그마에서 누르기전, 후 디자인을 작업하고 1장의 이미지로 저장.</li>
+    <li>html태그 체크박스를 삽입하고 label태그를 작성한다.(찜하기)</li>
+    <li>이때 체크박스를 label 태그보다 위에 반드시 작성해야한다.</li>
+    <li>label 태그에 display inline-block으로 설정으로 크기값을 준다.(배경이미지 삽입하기 위함).</li>
+    <li>체크박스에 체크시 뒤에 위치한 label태그에 배경위치값을 변경하여 이미지를 변경한다</li>
+
+  </ul>
+
+  <input type="checkbox" id="toggle">
+  <label for="toggle">찜하기</label>
+</body>
+</html>

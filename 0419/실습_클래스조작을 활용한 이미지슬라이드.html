@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습_클래스조작을 활용한 이미지슬라이드</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    article *{margin: 0px; padding: 0px;}
+    article{
+      width: 350px;
+      height: 420px;
+      border: 3px solid #000;
+      margin: 0 auto;
+      position: relative;
+      text-align: center;
+    }
+    article h3{
+      font-size: 30px; color: orange;
+      padding: 10px 0px;
+    }
+    .slide{display: flex; width: 1400px; position: relative; left: 0px;}
+    .slide > li{width: 350px; list-style: none;}
+    .slide >li img{width: 90%;}
+
+    /*컨트롤 버튼 서식*/
+    .c_btn{
+      transform: translateY(5px);
+    }
+    .c_btn span{
+      width: 15px;height: 15px;
+      border: 1px solid #333;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .act{
+      background: orange !important;
+    }
+    /*컨트롤 버튼*/
+    i.fas{color: #333;}
+    .fa-pause , .fa-play{position: absolute; right: 10px; bottom: 10px; font-size: 30px;}
+  </style>
+</head>
+<body>
+  <h2>실습_클래스조작을 활용한 이미지슬라이드</h2>
+  <p>이미지 목록 4장을 활용하여 컨트롤 버튼 클릭시 좌측으로 이동하는 슬라이드를 구현한다.</p>
+  <ul>
+    <li>이미지 350px 사진 4장을 목록태그로 가로배치</li>
+    <li>1번 사진 아래쪽에 span태그를 사용하여 컨트롤 버튼 모양을 구현</li>
+    <li>js나 제이쿼리에서 컨트롤 버튼 클릭시 해당 인덱스값(i)를 구하여 변수에 담는다</li>
+    <li>컨트롤 버튼 클릭시 나온 값을 통하여 연산수식에 -0 -350 -700 -1050 값을 대입하여 슬라이드가 왼쪽방향으로 움직이게 한다.</li>
+    <li>컨트롤버튼에 적용할 'act'서식을 만들어서 클릭시 해당서식이 적용되게 하고 그렇지 않은 컨트롤버튼에는 서식을 제거한다.</li>
+    <li>autoslide기능 추가 - setInterval 객체를 사용하여 매 3초마다 함수를 반복호출하여 자동실행</li>
+    <li>일시정지(pause) 버튼 클릭시 시간제거, play버튼 클릭시 자동재생하도록 한다.</li>
+  </ul>
+  <p>이동값 = 0, -350 , -700 , -1050을 컨트롤 버튼 클릭시 나오게 계산작업해야....</p>
+
+  <article>
+    <h3>신제품 출시</h3>
+    <ul class="slide">
+      <li><a href="#" title=""><img src="./images01/mcon3_2.png" alt=""></a></li>
+      <li><a href="#" title=""><img src="./images01/mcon3_3.png" alt=""></a></li>
+      <li><a href="#" title=""><img src="./images01/mcon3_4.png" alt=""></a></li>
+      <li><a href="#" title=""><img src="./images01/mcon3_5.png" alt=""></a></li>
+    </ul>
+    <div class="c_btn">
+      <span class="act">&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+    </div>
+    <i class="fas fa-pause"></i>
+  </article>
+  <script src="../제이쿼리/jquery-3.7.1.min.js"></script>
+  <script>
+    
+    //2.컨트롤 버튼 클릭시 인덱스값 구하기
+    $(document).ready(function(){
+      //변수 선언
+      let c_btn = $('.c_btn span');
+      let i = $('.c_btn span').index();
+      let img_w = 350;
+
+      c_btn.click(function(){
+        i = $(this).index()
+        slide(i);//함수 slide
+      })
+
+      /*함수 slide 정의*/
+      function slide(i){
+        //움직이는 이동값을 계산하여 이미지 목록에 대입하여 움직이게 한다. 수식 계산
+        let move = -(img_w*i);
+        // console.log(move); //move가 -0 , -350 ,- 700이거 값이 나와야함
+        $('.slide').animate({'left':move},300)
+        //기존 컨트롤 버튼제거하고 
+        c_btn.removeClass('act')
+        //선택한 컨트롤 버튼에 서식적용
+        $('.c_btn span').eq(i).addClass('act')
+      }
+
+      /*함수 move1 정의*/
+      function move1(){
+        if(i==3){//인덱스 번호가 3이면 
+          i=0; //1로 대입하여 슬라이드가 처음으로 나오게
+          //c_btn.removeClass('act');//기존 컨트롤 버튼 서식 모두 제거   아래에 써있어서 안써도됨 이 두개는
+          //$('.c_btn span').eq(i).addClass('act');//현재 인덱스번호에 해당하는 컨트롤 버튼 서식 적용
+        }else{//그렇지 않은경우 
+          i++;//1씩 증가하여 다음 슬라이드가 나오게
+          //c_btn.removeClass('act');//컨트롤 버튼 서식 모두 제거  아래에 써있어서 아써도됨 이 두개는
+          //$('.c_btn span').eq(i).addClass('act');//해당하는 컨트롤버튼 서식 적용
+        };
+        slide(i);//위에서 나온 인덱스 번호를 slide함수로 넘겨서 슬라이드가 움직이게 한다.(toss~~)
+      }
+
+
+      //시간 객체를 사용해서 매 3초마다 slide함수를 반복 호출함
+      let Timer = setInterval(function(){
+        move1();
+      },3000);
+
+      //정지버튼 클릭시 시간을 제거
+      $('i.fa-pause').click(function(){
+        clearInterval(Timer)//확실하게 시간을 제거용
+        if($(this).hasClass('fas fa-pause')==true){//일시정지 모양일때
+          clearInterval(Timer)//애니메이션 멈추고
+          $(this).attr('class','fas fa-play');
+        }else{
+          //play버튼 클릭시 다시 시간을 생성하여 자동으로 움직이게....
+          $(this).attr('class','fas fa-pause');
+          Timer = setInterval(function(){
+            move1();
+          },3000);
+        }
+      })
+
+    });
+  </script>
+</body>
+</html>

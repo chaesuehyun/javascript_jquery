@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>포지션 실습</title>
+  <style>
+    *{margin: 0px; padding: 0px;}
+    h2{line-height: 50px;}
+    .calender{width: 600px; height: 700px; 
+      position: relative;
+      background-color: #ffc7b4;
+    }
+    .l_eye, .r_eye{
+      position: absolute;
+      width: 50px; height: 50px;
+      background-color: #333;
+      border-radius: 50%;
+      top: 160px;
+    }
+    .l_eye{left: 120px; }
+    .r_eye{right: 120px; }
+
+    .nose{
+      width: 200px; height: 110px;
+      background-color: #ff9876;
+      border-radius: 50%;
+      position: relative;
+      left: 200px; top: 250px;
+    }
+    .l_nose, .r_nose{
+      position: absolute;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background-color: #aa583d;
+    }
+    .l_nose{top: 40px; left: 30px;}
+    .r_nose{top: 40px; right: 30px;}
+
+    table{
+      border-collapse: collapse; 
+      background-color: white; 
+      width: 90%; margin: 300px auto 0px auto;
+      border-radius: 30px;
+      
+    }
+    table caption{font-size: 30px; font-weight: bold;}
+    table tr{line-height: 34px;}
+    table td, table th{text-align: center;}
+  </style>
+</head>
+<body>
+  <h2>포지션 실습</h2>
+
+
+  <div class="calender">
+
+    <div class="l_eye">&nbsp;</div>
+    <div class="r_eye"> &nbsp;</div>
+    <div class="nose">
+      <div class="l_nose">&nbsp;</div>
+      <div class="r_nose">&nbsp;</div>
+    </div>
+
+    <table>
+      <caption>3월</caption>
+      <thead>
+      <tr>
+        <th scope="row">일</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td scope="row">3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td scope="row">10</td>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <td scope="row">17</td>
+        <td>18</td>
+        <td>19</td>
+        <td>20</td>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+      </tr>
+      <tr>
+        <td scope="row">24</td>
+        <td>25</td>
+        <td>26</td>
+        <td>27</td>
+        <td>28</td>
+        <td>29</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td scope="row">31</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</body>
+</html>

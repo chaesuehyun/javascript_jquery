@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>종합갤러리</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .gallery{
+      width: 650px;
+    }
+    .gallery h2{margin: 0px;}
+    .gallery p{
+      display: inline-block;
+    }
+    #num{
+      position: absolute;
+      left: 60px;
+      top: 5px;
+      font-size: 14px;
+      color: #f00;
+    }
+    .gallery >ul{
+      display: flex;
+      float: right;
+      list-style: none;
+    }
+    .gallery > ul >li{
+      border: 1px solid #ccc;
+      padding: 3px;
+    }
+
+    .TOP{
+      width: 650px;
+      position: relative;
+    }
+    /*작은 이미지 화살표 서식*/
+    .gallery i{
+      width: 39px; height: 100px;
+    }
+    #l_btn01, #r_btn01{
+      border: 1px solid #ccc;
+      text-align: center;
+      line-height: 100px;
+      font-size: 30px;
+      color: #333;
+      position: absolute;
+
+    }
+    #l_btn01{
+      left: 0px;
+      top: 0px;
+    }
+    #r_btn01{
+      right: 0px;
+      top: 0px;
+    }
+
+    /*작은 이미지 서식*/
+    .lnb {
+      width: 650px;
+      display: flex; 
+      flex-wrap: wrap;
+      list-style: none;
+      /* margin-left: 10px; */
+    }
+    .lnb>li{box-sizing: border-box;}
+    .lnb li>img{width: 190px;box-sizing: border-box;}
+
+    /*big_img 서식*/
+    .bottom{
+      position: relative;
+    }
+    .bottom img{
+      width: 650px;
+    }
+
+    /*big_img 화살표 서식*/
+    #l_btn02, #r_btn02{
+      background: rgba(0,0,0,.7);
+      color: #fff;
+      border: none;
+      font-size: 30px;
+      text-align: center;
+      line-height: 100px;
+      position: absolute;
+
+    }
+    #l_btn02{
+      left: 0px;
+      top: 115px;
+    }
+    #r_btn02{
+      right: 0px;
+      top: 115px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <h2>포토</h2>
+    <p id="num">1/9</p>
+    <p>스틸컷 포스터</p>
+    <ul>
+      <li>원본보기</li>
+      <li>주소복사</li>
+    </ul>
+
+    <div class="TOP">
+      <i class="fa-solid fa-angle-left" id="l_btn01"></i>
+      <i class="fa-solid fa-angle-right" id="r_btn01"></i>
+
+      <ul class="lnb">
+        <li><img src="./images01/movie_image1.jpg" alt="1"></li>
+        <li><img src="./images01/movie_image2.jpg" alt="2"></li>
+        <li><img src="./images01/movie_image3.jpg" alt="3"></li>
+        <li><img src="./images01/movie_image4.jpg" alt="4"></li>
+        <li><img src="./images01/movie_image5.jpg" alt="5"></li>
+        <li><img src="./images01/movie_image6.jpg" alt="6"></li>
+        <li><img src="./images01/movie_image7.jpg" alt="7"></li>
+        <li><img src="./images01/movie_image8.jpg" alt="8"></li>
+        <li><img src="./images01/movie_image9.jpg" alt="9"></li>
+      </ul>
+    </div>
+
+    <div class="bottom">
+      <img src="./images01/movie_image1.jpg" alt="1" id="big_img">
+      <i class="fa-solid fa-angle-left" id="l_btn02"></i>
+      <i class="fa-solid fa-angle-right" id="r_btn02"></i>
+
+    </div>
+
+  </div>
+
+  <script>
+    //id num에 innerHTML를 이용해 넘버를 쓴다
+    //click시 큰이미지 바뀌어야하고 
+    //i태그도 클릭시 좌우로 사진이 바뀌어야한다 이건 오늘쪽은 ++인것같고 왼쪽은 --인것같다
+    //변수는 1. 작은사진 변수 ,2. 큰사진 변수
+
+    //변수 선언 큰이미지 작은이미지
+    const b_img=document.getElementById('big_img')
+    let s_img= document.querySelectorAll('.lnb > li> img')
+    //변수선언 좌우버튼
+    let l_btn1 = document.getElementById('l_btn01')
+    let l_btn2 = document.getElementById('l_btn02')
+    let r_btn1 = document.getElementById('r_btn01')
+    let r_btn2 = document.getElementById('r_btn02')
+    let count = 1;
+
+    //큰이미지 작은이미지 + 숫자 출력
+    for(let i=0;i<s_img.length;i++){
+      //작은이미지에 마우스 올렸을때
+      s_img[i].addEventListener('mouseenter',function(){
+        for(let j=0;j<s_img.length;j++){
+          s_img[j].style.border='none'
+          this.style.border='1px solid #f00'
+        }
+
+      })
+      //작은 이미지 클릭했을때
+      s_img[i].addEventListener('click',function(){
+        let url =this.src;
+        b_img.src = url;
+        // console.log(i)//클릭시 이미지 숫자번호 나오는것 확인
+        //클래스num 숫자 출력하기
+        document.getElementById('num').innerHTML=`${i+1}/9`
+
+        //빨간색줄 나오는거
+        for(let j=0;j<s_img.length;j++){
+          s_img[j].style.border='none'
+          this.style.border='1px solid #f00'
+        }
+      })
+    }
+
+    //버튼을 클릭했을때 해당사진이 변경
+    //왼쪽버튼 클릭시 실행되는 내용
+    function moveLeft(){
+      if(count ==1){
+        count = 9;
+      }else{
+        count = count -1;
+      }
+      document.getElementById('num').innerHTML = `${count}/9`
+      b_img.src=`./images01/movie_image${count}.jpg`;
+
+      //클릭했을때 테두리 움직이는거
+      for(let b=0;b<s_img.length;b++){
+        // console.log(b);
+        s_img[b].style.border='none'
+        s_img[count-1].style.border='1px solid #f00'
+      }
+    }
+    
+    l_btn1.onclick=function(){moveLeft();}
+    l_btn2.onclick=function(){moveLeft();}
+
+    //오른쪽 버튼 클릭시 실행되는 내용
+    function moveReft(){
+      if(count ==9){
+        count = 1;
+      }else{
+        count = count +1;
+      }
+      document.getElementById('num').innerHTML = `${count}/9`
+      b_img.src=`./images01/movie_image${count}.jpg`;
+
+      //클릭했을떄 테두리 움직이는거
+      for(let b=0;b<s_img.length;b++){
+        // console.log(b);
+        s_img[b].style.border='none'
+        s_img[count-1].style.border='1px solid #ff0000'
+      }
+    }
+    
+    r_btn1.onclick=function(){moveReft();}
+    r_btn2.onclick=function(){moveReft();}
+
+  </script>
+  <script>
+    //갤러리 스크립트
+
+//변수 페이지 번호, 좌,우버튼 ,
+let n = 1
+let img_n = document.querySelectorAll('.lnb > li');
+let l_btn = document.querySelectorAll('.fa-angle-left')
+let r_btn = document.querySelectorAll('.fa-angle-right')
+document.getElementById('img_num').innerHTML=`${n}/9`;
+
+//썸네일 이미지 목록(li)태그 클릭시 해당 인덱스번호를 구하여
+for(let i=0; i<img_n.length; i++){
+  img_n[i].addEventListener('click',function(){
+    // console.log(i+1);
+    n = i+1
+    imgChange(n)
+  })
+}
+// 이미지 변경하기위한 함수로 넘기기
+
+/*사용자 정의 함수 imgChange()
+1. 숫자변경
+2. 이미지변경
+*/
+//forEach함수는 배열에서만 사용가능한 메서드이다.
+/*
+문법
+객채.forEach((매개변수,index)){
+  각각실행할 함수 내용을 적는다.
+}*/
+//좌우버튼 클릭시 n값을 imgChange함수에 넘기기
+l_btn.forEach((el)=>{
+  el.addEventListener('click',function(){
+    alert('왼쪽클릭');
+    if(n==1){
+      n=9;
+    }else{
+      n--;
+    }
+    imgChange(n);
+  });
+});
+
+r_btn.forEach((el)=>{
+  el.addEventListener('click',function(){
+    alert('오른쪽클릭');
+    if(n==9){
+      n=1;
+    }else{
+      n++;
+    }
+    imgChange(n);
+  });
+});
+
+function imgChange(){
+  console.log(n);
+  //페이지넘버 바뀌는거
+  document.getElementById('img_num').innerHTML=`${n}/9`;
+
+  //이미지 바뀌는거
+  document.getElementById('main').src=`./images01/movie_image${n}.jpg`
+
+  //li목록에 적용된 서식 모두 제거
+  for(let j=0; j<img_n.length;j++){
+    img_n[j].style.border='none'
+    img_n[j].style.box_sizing='border-box'
+  }
+  img_n[n-1].style.border='3px solid #f00'
+}
+  </script>
+</body>
+</html>

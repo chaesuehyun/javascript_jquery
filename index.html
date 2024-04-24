@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트 수업목차</title>
+    <!--아이콘 이미지-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!--초기화 서식-->
+    <link href="./reset.css" rel="stylesheet" type="text/css">
+    <link href="./style.css" rel="stylesheet" type="text/css">
+    <style>
+      .act{
+        transform: rotate(180deg) ; 
+      }
+    </style>
+    <script src="./제이쿼리/jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        let ul =$('.list01 > li')
+        let i = 0;
+
+        // ul.click(function(){
+        //   console.log('click')
+        // })
+        // 맨첨에 한 버전
+        // console.log(ul)
+        ul.click(function(){
+          // $('.sub li').slideUp()//보이는 답변 모두 접어올린다.
+          //형 바로뒤 동생 요소를 선택하여 보이게함.
+          
+          // $('.list01 ul').next().slideToggle(); //이거하면 sub다 한꺼번에
+          $(ul).children('.sub').slideUp();
+          $(this).children('.sub').slideDown();
+
+        })
+      });
+    </script>
+
+</head>
+<body>
+  <header>
+    <h1>
+      <a href="index.html" title="자바스크립트_제이쿼리">
+        Java Script & jQuery
+      </a>
+    </h1>
+  </header>
+  <main>
+    <section>
+      <h2>
+        <img src="./pngwing.com.png" title="">
+      </h2>
+        <ul class="list01">
+          <li>1일차 -0327 <i class="fas fa-angle-down"></i>
+
+            <ul class="sub">
+              <li>
+                <a href="./3월/0327/1.자바스크립트 소개와 기초 문법.html" title="">
+                  01 자바스크립트 소개와 기초문법
+                </a>
+              </li>
+              <li>
+                <a href="./3월/0327/2.자바스크립트로 만들수있는 컨텐츠 찾아보기_만들기.html" title="">
+                  02 자바스크립트 만들 수 있는 콘텐츠 찾아보기_만들기
+                </a> 
+              </li>
+            </ul>
+          </li>
+
+          <li>2일차 - 0328 <i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./3월/0328/자바스크립트_문서출력하기.html" title="">01 문서 출력방법</a></li>
+              <li><a href="./3월/0328/자바스크립트_변수의 개념과 활용.html" title=""> 02 변수의 개념과 활용</a></li>
+              <li><a href="./3월/0328/자바스크립트_연산자.html" title=""> 03 연산자</a></li>
+            </ul>
+          </li>
+
+          <li>3일차 - 0329 <i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./3월/0329/자바스크립트_제어문.html" title="">01 제어문</a></li>
+              <li><a href="./3월/0329/자바스크립트_연산자 실습하기.html" title=""> 02 연산자 실습</a></li>
+              <li><a href="./3월/0329/자바스크립트_변수에 저장할수있는 데이터유형.html" title=""> 변수 데이터 유형</a></li>
+            </ul>
+          </li>
+
+          <li>4일차 - 0401 <i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./0401/자바스크립트_제어문02_switch_case.html" title="">01 제어문2</a></li>
+              <li><a href="./0401/자바스크립트_제어문03_while문_do whil_for.html" title="">02 제어문3</a></li>
+            </ul>
+          </li>
+
+          <li>5일차 - 0402 <i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./0402/자바스크립트_함수의개념과 활용.html" title="">01 함수의 개념과 활용</a></li>
+              <li><a href="./0402/자바스크립트 실습1_함수를활용하여 비만도지수 구하기.html" title="">02 함수 활용</a></li>
+            </ul>
+          </li>
+
+          <li>6일차 - 0403 <i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./0403/자바스크립트_객체.html" title="">01 자바스크립트_객체</a></li>
+              <li><a href="./0403/자바스크립트_이벤트.html" title="">02 자바스크립트_이벤트</a></li>
+            </ul>
+          </li>
+
+          <li>7일차 - 0405 <i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./0405/자바스크립트_수학객체.html" title="">01 자바스크립트_수학객체</a></li>
+            </ul>
+          </li>
+
+          <li>8일차 - 0409<i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./0409/모바일 내비게이션.html" title="">모바일 내비게이션</a></li>
+              <li><a href="./0409/찜하기 버튼.html" title="">찜하기 버튼</a></li>
+            </ul>
+          </li>
+
+          <li>9일차 - 0415 자바스크립트 내장객체_배열,시간,브라우저,문서 <i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./0415/자바스크립트 내장객체_배열.html" title="">01 내장객체_배열</a></li>
+              <li><a href="./0415/자바스크립트 내장객체_문자열 객체.html" title="">문자열 객체</a></li>
+              <li><a href="./0415/자바스크립트 내장객체_날짜객체.html" title="">날짜객체</a></li>
+              <li><a href="./0415/자바스크립트 내장객체_윈도우 객체.html" title="">윈도우 객체</a></li>
+              <li><a href="./0415/자바스크립트 실습1 탭컨텐츠.html" title="">실습 탭컨텐츠</a></li>
+            </ul>
+          </li>
+          <li>10일차 - 0416 <i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./0416/자바스크립트_좌우슬라이드.html" title="">좌우슬라이드</a></li>
+              <li><a href="./0416/자바스크립트 내장객체_문서객체.html" title="">문서 객체</a></li>
+            </ul>
+          </li>
+          <li>11일차 - 미에로 화이바 실습 <i class="fas fa-angle-down"></i>
+            <ul class="sub">
+              <li><a href="./0417/미에로화이바 메인슬라이드 구현.html" title="">미에로 화이바</a></li>
+            </ul>
+          </li>
+        </ul>
+
+
+    </section>
+    <section>
+      <h2>
+        <img src="./jquery_plain_wordmark_logo_icon_146445.png" title="">
+      </h2>
+      <ul class="list01">
+        <li>1일차 0417 <i class="fas fa-angle-down"></i> 
+          <ul class="sub">
+            <li><a href="./0417/제이쿼리_선택자.html" title="">01 제이쿼리 기초</a></li>
+            <li><a href="./0417/제이쿼리_소개와문법.html" title="">01 제이쿼리 기초</a></li>
+            <li><a href="./0417/제이쿼리_이벤트.html" title="">01 제이쿼리 기초</a></li>
+            <li><a href="./0417/제이쿼리_효과.html" title="">01 제이쿼리 기초</a></li>
+            <li><a href="./0417/쿠팡 메인슬라이드 구현하기.html" title="">01 제이쿼리 기초</a></li>
+          </ul>
+        </li>
+        <li>2일차 0418 <i class="fas fa-angle-down"></i> 
+          <ul class="sub">
+            <li><a href="./0418/제이쿼리_애니메이트메소드.html" title="">애니메이트메소드</a></li>
+            <li><a href="./0418/제이쿼리_실습예제_사이드메뉴.html" title="">실습예제1</a></li>
+          </ul>
+        </li>
+        <li>3일차 0419 <i class="fas fa-angle-down"></i> 
+          <ul class="sub">
+            <li><a href="./0419/제이쿼리 문서 객체조작.html" title="">객체조작</a></li>
+            <li><a href="./0419/제이쿼리 클래스조작.html" title="">클래스조작</a></li>
+            <li><a href="./0419/index(1).html" title="">베스킨라빈스 실습</a></li>
+          </ul>
+        </li>
+        <li>4일차 0422 <i class="fas fa-angle-down"></i> 
+          <ul class="sub">
+            <li><a href="./0422/제이쿼리 문서객체 조작.html" title="">객체 조작</a></li>
+            <li><a href="./0422/제이쿼리 문서객체조작 실습02_모달윈도 띄우기_오늘하루열지않음.html" title="">오늘하루 열지않음 모달윈도</a></li>
+            <li><a href="./0422/제이쿼리_실시간 검색순위.html" title="">실시간 검색순위</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer></footer>
+</body>
+</html>

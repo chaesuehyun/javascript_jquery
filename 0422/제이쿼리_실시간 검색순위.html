@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제이쿼리_실시간 검색순위</title>
+  <style>
+    .box{width: 350px; background: #ccc;}
+    .box_inner{padding: 20px;}
+    .box_inner > h3{
+      border-bottom: 2px solid #00f;
+      padding-bottom: 10px; margin-bottom: 20px;
+    }
+    .box_inner > ul{
+      height: 150px; border: 1px solid #f00;
+    }
+    .box_inner > ul >li{list-style: none;}
+    .box_inner a{
+      color: #333; text-decoration: none; 
+      font-size: 13px; line-height: 2em; 
+      display: block;
+    }
+    .box_inner li:first-child a{font-size: 18px; line-height: 1.4em; font-weight: bold;}
+    .box_inner ul li:nth-child(2) a {font-size: 16px; line-height: 1.4em; margin-top: 4px;}
+
+    .new_lank *{margin: 0px; padding: 0px;}
+    .new_lank{
+      width: 600px;
+      height: 30px;
+      background: #efefef;
+      border: 1px solid #f00;
+      overflow: hidden;
+      display: flex;
+    }
+    .new_lank p{padding-top: 5px;}
+    .new_lank ul{
+      padding-left: 30px;
+    }
+    .new_lank li{
+      width: 400px;
+      list-style: none;
+      padding-top: 5px;
+      /*3개를 같이 써야함*/
+      text-overflow: ellipsis;/*...이 나오게하는 속성*/
+      white-space: nowrap;/*한줄로 쭉나오게 하는속성*/
+      overflow: hidden;/*가로영역 벗어난 글자숨기기*/
+
+    }
+    .new_lank a{text-decoration: none; color: #333;}
+    .new_lank a:hover{text-decoration: underline;}
+  </style>
+</head>
+<body>
+  <h2>제이쿼리_실시간 검색순위</h2>
+  <p>검색순위, 실시간 예매순위, 실시간 판매순위, 실시간 랭킹</p>
+  <div class="box">
+    <article class="box_inner">
+      <h3>실시간 검색</h3>
+      <ul>
+        <li><a href="#" title="keysord1">keyword1</a></li>
+        <li><a href="#" title="keysord2">keyword2</a></li>
+        <li><a href="#" title="keysord3">keyword3</a></li>
+        <li><a href="#" title="keysord4">keyword4</a></li>
+        <li><a href="#" title="keysord5">keyword5</a></li>
+        <li><a href="#" title="keysord6">keyword6</a></li>
+      </ul>
+    </article>
+    <h3>시간객체</h3>
+    <p>setInterval(함수명,반복할시간); - 일정시간마다 함수나 내용을 반복호출하여 실행</p>
+    <p>setTimeout(내용,반복할시간); - 일정시간마다 함수나 내용을 호출하여 한번실행</p>
+  </div>
+  <!--글목록10개-->
+  <div class="new_lank">
+    <p>뉴스 스탠드 </p>
+      <ul>
+        <li><a href="#" title="">윤 대통령, 새 대통령비서실장에 5선 정진석 의원</a></li>
+        <li><a href="#" title="">멀쩡한 부품을 ‘성능 미달’로…서류 조작 감사원 직원 해임</a></li>
+        <li><a href="#" title="">정부 “원점 재검토 없다”…의대생들 ‘소송전’ 본격화</a></li>
+        <li><a href="#" title="">복지부 "의대교수 사직서 수리 예정된 사례 없어"</a></li>
+        <li><a href="#" title="">오세훈, 국민의힘 서울 낙선·당선자 '격려 만찬'</a></li>
+        <li><a href="#" title="">달 탐사도 이제 자율주행차 시대</a></li>
+        <li><a href="#" title="">쿠팡 멤버십 폭탄 인상에 네이버·신세계·컬리 “우리는 무료”</a></li>
+        <li><a href="#" title="">“직업윤리 저버린 분들” 파업의사 출입금지 시킨 미슐랭 식당</a></li>
+        <li><a href="#" title="">日 관광객 '당황'...강남 미용실서 커트·파마에 80만 원 결제</a></li>
+        <li><a href="#" title="">尹 “이재명 대표 얘기 많이 듣겠다”…전국민 25만원 논의 여부 주목</a></li>
+      </ul>
+
+  </div>
+
+  <script src="../제이쿼리/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      
+      //setInterval(함수명,반복할 시간)
+      
+      
+      setInterval(function(){
+        //  변수선언
+        let boxIn = $('.box_inner ul');
+        let boxRow = $('.box_inner ul li:first');//첫번째 li태그를 변수에 저장
+        // console.log(1)//내용출력
+        // print()//함수로 내용출력
+        let print = ()=>{//3초마다 반복되느 내용
+          boxRow.appendTo(boxIn).show(300);//첫쨰 li태그를 ul태그의 안쪽 마지막 요소에 자리를 배치(위치변경)
+        }
+        boxRow.hide(300,print)//boxRow가 숨겨지고 나면 print에 저장된 콜백함수가 실행됨.
+      },3000);
+      
+      
+      setInterval(function(){
+        //  변수선언
+        let boxIn = $('.new_lank ul');
+        let boxRow = $('.new_lank ul li:first');//첫번째 li태그를 변수에 저장
+        // console.log(1)//내용출력
+        // print()//함수로 내용출력
+        let print = ()=>{//3초마다 반복되느 내용
+          boxRow.appendTo(boxIn).show(400);//첫쨰 li태그를 ul태그의 안쪽 마지막 요소에 자리를 배치(위치변경)
+        }
+        boxRow.hide(400,print)//boxRow가 숨겨지고 나면 print에 저장된 콜백함수가 실행됨.
+      },3000);
+
+    })
+    </script>
+</body>
+</html>

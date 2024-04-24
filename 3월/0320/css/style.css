@@ -1,0 +1,53 @@
+@charset "utf-8";
+/**/
+body{
+  font-family: '맑은 고딕' Arial, sans-serif;
+  font-size: 13px;
+  color: #333333;
+}
+a{color: #333333; font-size: 13px; text-decoration: none;}
+
+
+/*헤더*/
+header{
+  height: 70px; 
+  /* background-color: #ffff00; */
+  position: relative;/*자식요소의 기준*/
+}
+
+header> h1{
+  width: 230px;
+  margin: 0 auto;
+
+}
+header >h1 img{width: 230px; padding-top: 10px;}
+
+.totla_btn, .cart_btn{
+  position: absolute; top: 10px;
+}
+.totla_btn >img , .cart_btn > img{
+  width: 40px; padding: 4px;
+}
+
+.totla_btn{left: 10px;}
+.cart_btn{right: 10px;}
+/*메인*/
+main > img { width: 100%;}
+
+/*푸터*/
+footer{
+  display: flex; border-top:1px solid #999999 ; 
+  margin-top: 10px;
+}
+footer > a{
+  display: flex;
+  width: 100%; justify-content: center;
+  margin-top: 10px;
+}
+footer > a img{width: 70px; padding: 4px;}
+
+footer >a p{
+  font-weight: bold; font-size: 20px;
+  padding: 20px 0px;
+}
+footer >a:first-child{border-right: 1px solid #999999;}

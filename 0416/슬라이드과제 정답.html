@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슬라이드 과제 정답</title>
+
+  <style>
+    *{margin: 0px; padding: 0px;}
+    .swiper-container{
+      width: 100%;
+      position: relative;
+    }
+    .swiper-wrapper{
+      width: 600%;
+      display: flex;
+      position: relative;
+      left: 0px;
+      transition: 0.5s;
+    }
+    .swiper-slide{
+      width: 100%;
+    }
+    .swiper-wrapper div:last-child{margin: none;}
+    .swiper-wrapper div img{width: 100%; display: block;}
+
+    .btn{
+      width: 30px; height: 30px;
+      cursor: pointer;
+      border-right: 3px solid #fff; 
+      border-bottom: 3px solid #fff;
+      display: inline-block;
+      position: absolute; top: 47%;
+    }
+    #left{left: 10px; transform: rotate(135deg); top: 45%;}
+    #right{right: 10px; transform: rotate(-45deg); top: 45%;}
+  </style>
+</head>
+<body>
+  <h2>종합실습 반응형 슬라이드 좌,우</h2>
+  <article class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide slide1"><img src="./images/slide1.jpg" alt="1"></div>
+      <div class="swiper-slide slide2"><img src="./images/slide2.jpg" alt="2"></div>
+      <div class="swiper-slide slide3"><img src="./images/slide3.jpg" alt="3"></div>
+      <div class="swiper-slide slide4"><img src="./images/slide4.jpg" alt="4"></div>
+      <div class="swiper-slide slide5"><img src="./images/slide5.jpg" alt="5"></div>
+      <div class="swiper-slide slide5"><img src="./images/slide6.jpg" alt="6"></div>
+    </div>
+    <!-- <input type="button" class="btn" id="left" value="왼쪽">
+    <input type="button" class="btn" id="right" value="오른쪽"> -->
+    <span class="btn" id="left">&nbsp;</span>
+    <span class="btn" id="right">&nbsp;</span>
+
+    <script>
+      //변수선언하기
+      //좌측과 우측의 버튼/ swiper-wrapper / 움직이는 이동거리 / 개수
+  
+      const slide=document.querySelector('.swiper-wrapper');
+      const slide_img=document.querySelectorAll('.swiper-wrapper .swiper-slide')
+      const l_btn = document.getElementById('left')
+      const r_btn = document.getElementById('right')
+  
+      const img_n = slide_img.length; //목록의 개수를 구하여 변수에 담는다.
+  
+      console.log(img_n);//5
+      const img_w = 100;//이미지너비값 100%
+      const s_con = 1;//한페이지에 보여질 페이지수
+  
+      let count = 0;//초기값
+  
+      //왼쪽으로 움직이는 함수
+      function mslide(n){
+        slide.style.left = (img_w*n) + '%';//0, -100% ,-200% , -300%, -400%, -500%
+        //n이 1일경우 300 + 30*-1 = -330;
+        //n이 2일경우 300+30*-2 = -660
+        count = n;
+        console.log(slide.style.left);
+      };
+  
+      //버튼 클릭시 n값을 mslide에 넘겨서 슬라이드 움직이게 함.
+      l_btn.addEventListener('click',function(){
+          clearInterval(Timer);//시간객체를 제거하여 슬라이드 멈추게한다.
+        if(count>0){//만약에 count값이 0보다 크면
+          mslide(count -1);//count값에  1을 빼고
+        }else{
+          mslide(img_n-s_con);//그렇지 ㅏㅇㄶ으면 img목록개수에 페이지보여질 개수를 뺀값을 넣어라
+        };
+      });
+  
+      r_btn.addEventListener('click',function(){
+        clearInterval(Timer);//시간객체를 제거하여 슬라이드 멈추게한다.
+        if(count<img_n-s_con){//만약에 count값이 이미지목록개수와 보여질 개수 뺀값보다 작다면
+          mslide(count + 1);//count+1을 하여 그전 이미지가 나오게
+        }else{//그렇지 않으면
+          mslide(0);//0을 대입하여 첫번째 목록이 나오게 한다.
+        };
+      });
+  
+      //매 3초마다 자동으로 함수를 호출하여 움직이게 한다.
+      //시간객체 setInterval(함수명, 시간) 반복실행
+      //시간제거clearInterval(객체명)시간을 정지함
+  
+      let Timer = setInterval(function(){
+        if(count<img_n-s_con){//만약에 count값이 이미지목록개수와 보여질 개수 뺀값보다 작다면
+          mslide(count + 1);//count+1을 하여 그전 이미지가 나오게
+        }else{//그렇지 않으면
+          mslide(0);//0을 대입하여 첫번째 목록이 나오게 한다.
+        };
+      },3000);
+  
+      // //마우스오버, 아웃
+      // //마우스 아웃시 다시 시간객체를 생성하여 자동으로 움직이게 한다.
+      l_btn.addEventListener('mouseleave',function(){
+        Timer = setInterval(function(){
+        if(count<img_n-s_con){//만약에 count값이 이미지목록개수와 보여질 개수 뺀값보다 작다면
+          mslide(count + 1);//count+1을 하여 그전 이미지가 나오게
+        }else{//그렇지 않으면
+          mslide(0);//0을 대입하여 첫번째 목록이 나오게 한다.
+        };
+      },3000);
+      })
+      r_btn.addEventListener('mouseleave',function(){
+        Timer = setInterval(function(){
+        if(count<img_n-s_con){//만약에 count값이 이미지목록개수와 보여질 개수 뺀값보다 작다면
+          mslide(count + 1);//count+1을 하여 그전 이미지가 나오게
+        }else{//그렇지 않으면
+          mslide(0);//0을 대입하여 첫번째 목록이 나오게 한다.
+        };
+      },3000);
+      })
+  
+  
+    </script>
+</body>
+</html>

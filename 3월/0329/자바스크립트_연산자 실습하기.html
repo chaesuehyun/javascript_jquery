@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트_연산자 실습하기</title>
+</head>
+<body>
+  <h2>자바스크립트_연산자 실습하기</h2>
+  <p>자바스크리트 연산자를 활용하여 수식을 만들고 결과값에 대해 이해하기</p>
+
+
+  <script>
+    //1. 산술연산자 + ,_ , * / %
+    let a,b, res ;
+    //데이터 입력
+    a = 10;
+    b =3;
+
+    //데이터 출력
+    res = a + b;//10 + 3 = res
+    document.write(res+'<br>');
+    res = a - b;//10 - 3 = res
+    document.write(res+'<br>');
+
+    res =a % b; //10을 3으로 나누기 했을떄 나머지값이 뭔지 구하는거
+    document.write('나머지값'+res +'<br>');
+
+    //2. 비교연산자 <, >, <= ,>= , ==, ===
+    res = a>b; //10 > 3   true
+    document.write(res + '<br>')
+    res = a<b; //10 < 3   false
+    document.write(res + '<br>')
+
+    //3. 대입연산자 a=b , a+=b , a-=b
+    res = a += b; // a = a+b 란뜻
+    document.write(res+'<br>')
+
+    res = a-=b;// 위에 해놓은것으로 인해 a=13인상태여서 a = a-b가 a=13-3 인상태이다 그래서 10이 나옴 7이 아닌
+    document.write(res+'<br>')
+
+    //4. 증감연산자 : ++(1씩증가), --(1씩감소)
+    res = ++a; //a를 출력하고 난 뒤에 1을 더하라~ (++이 뒤에있으면)
+    document.write('증감연산자' + res+'<br>')
+
+    res = --a; //a를 출력하고 난 뒤에 1을 빼라 (--이 뒤에있으면) 
+    document.write('증감연산자' +res+'<br>')
+
+    //5. 논리연산자 : &&(and), ||(or), !(not)
+    //alert((1<2)&&(1>2))//false
+    //alert((1<2)||(1>2));//true 왜 맞다고 나오는거지? ''
+
+    //6. 문자열 결합연산자 +
+    res =a+b; //연산 둘다 숫자일 경우에만 연산식이 이루어짐
+
+    res= a +'b';//숫자 + '문자'여서 결합   둘중 하나가 문자일 경우 결합연산자로 사용함
+
+    //7. 삼항조건연산자 조건식?실행문1:실행문2;  이 조건식은 name은 홍길동인가? 가 해당함
+    let name = prompt('이름을 입력하세요 예)홍길동')
+    name == '홍길동'?document.write('입력하신이름이 맞습니다'):document.write('입력하신 이름이 틀립니다 다시 확인하세요');
+
+    //입력하신 id의 값이 master 이거나 naver이고 , 패스워드가 '1234'일 경우 '로그인성공','로그인 실패' 라고 결과 출력하기
+
+    //1. 변수 선언
+    let id = prompt('master 혹은 naver');
+    let pw = prompt('1234');
+
+    //2. 변수 데이터입력
+    //3. 조건식 작성후 결과값 출력
+    id=='master'||'naver' && pw=='1234'?document.write('로그인 성공'):document.write('로그인 실패');//내가 한거
+    // (id=='master'|| id=='naver')&&(pw='1234')?document.write('로그인성공'):document.write('로그인 실패') 이게 정석
+
+
+
+
+
+  </script>
+</body>
+</html>

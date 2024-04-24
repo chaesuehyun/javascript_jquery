@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  <style>
+    .swiper-container *{margin: 0px; padding: 0px;}
+    .swiper-container{
+      width: 100%;height: 500px;
+      background: #ffd8ca;
+      position: relative;
+    }
+    .swiper-wrapper{
+      width: 100%;
+      height: 500px;
+      background: cornflowerblue;
+      display: flex;
+      transition: 0.5s;
+      overflow: hidden;
+    }
+    .swiper-slide{
+      width: 100%;
+      height: 500px;
+      background: #ffd8ca;
+      border: 1px solid #333;
+      display: block;
+      margin-right: 30px;
+      position: absolute;
+    }
+    .slide1{background: #ff9292;z-index: 5;}
+    .slide2{right: 100%; background: #efff84;z-index: 4;}
+    .slide3{right: 200%; background: #9857bd;z-index: 3;}
+    .slide4{right: 300%; background: #4c90d5;z-index: 2;}
+    .slide5{ right: 400%; background: #1f314e;z-index: 1;}
+    .btn{
+      position: absolute;
+      border: none;
+      background: rgba(0,0,0,.6);
+      color: #fff;
+      width: 50px;
+      height: 50px;
+      z-index: 10;
+    }
+    #left{top: 45%;left: 0;}
+    #right{top: 45%; right: 0;}
+  </style>
+</head>
+<body>
+  <h2>좌,우 이미지 슬라이드 과제</h2>
+  
+  <article class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide slide1">slide1</div>
+      <div class="swiper-slide slide2">slide2</div>
+      <div class="swiper-slide slide3">slid3</div>
+      <div class="swiper-slide slide4">slid4</div>
+      <div class="swiper-slide slide5">slid5</div>
+    </div>
+    <input type="button" class="btn" id="left" value="왼쪽">
+    <input type="button" class="btn" id="right" value="오른쪽">
+    <!-- <span class="btn" id="left">&nbsp;</span>
+    <span class="btn" id="right">&nbsp;</span> -->
+  </article>
+  <script>
+    const slide = document.querySelector('.swiper-wrapper');
+    const slide_img=document.querySelectorAll('.swiper-wrapper .swiper-slide')
+    const l_btn = document.getElementById('left')
+    const r_btn = document.getElementById('right')
+
+    const img_n = slide_img.length;
+    console.log(img_n)
+
+    const img_w = 100;//100%로 할려했는데 %를 쓰면안되네
+    const s_con = 1;//한페이지에 보여질 페이지수
+
+    //왼쪽으로 움직이는 함수
+    function mslide(n){
+      slide.style.left = (img_w)+'%';//0, -330 -660
+      //n이 1일경우 300 + 30*-1 = -330;
+      //n이 2일경우 300+30*-2 = -660
+      count = n;
+      console.log(slide.style.left);
+    };
+
+    //버튼 클릭시 n값을 mslide에 넘겨서 슬라이드 움직이게 함.
+    l_btn.addEventListener('click',function(){
+      if(count>0){//만약에 count값이 0보다 크면
+        mslide(count -1);//count값에  1을 빼고
+      }else{
+        mslide(img_n-s_con);//그렇지 ㅏㅇㄶ으면 img목록개수에 페이지보여질 개수를 뺀값을 넣어라
+      };
+    });
+
+    r_btn.addEventListener('click',function(){
+      if(count<img_n-s_con){//만약에 count값이 이미지목록개수와 보여질 개수 뺀값보다 작다면
+        mslide(count + 1);//count+1을 하여 그전 이미지가 나오게
+      }else{//그렇지 않으면
+        mslide(0);//0을 대입하여 첫번째 목록이 나오게 한다.
+      };
+    });
+  </script>
+</body>
+</html>

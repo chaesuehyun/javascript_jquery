@@ -1,0 +1,18 @@
+@charset "utf-8";
+/*mobile 해상도일 경우 적용되는 서식*/
+@media screen and (max-width:767px) {
+  /* body{} */
+  nav{height: 50px;}
+  header, nav, .cont01,.cont02, footer{width: 100%;}
+  .cont01,.cont02{height: 100vh;}
+  .wrap{
+    grid-template-rows:repeat(1,auto) ;
+    grid-template-areas: 
+    "header"
+    "nav"
+    "cont1"
+    "cont2"
+    "footer"
+    ;
+  }
+}

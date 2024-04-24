@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+*{margin: 0px; padding: 0px;}
+h2, p{padding: 10px;}
+
+.wrap{
+  display: grid;
+  /* width: 1020px; */
+  grid-gap:10px;
+}
+header{
+  height: 80px; background: #ccc;
+  grid-area: header;
+}
+nav{ width: 80px; background: #ffff86; height: 610px; grid-area: nav;}
+.cont01{width: 690px; background: #8bff8b; height: 550px; grid-area: cont1;}
+.cont02{width: 245px; background: #97ffff; height: 550px; grid-area: cont2;}
+footer{
+  height: 50px; background: #444;
+  color: #fff;
+  grid-area: footer;
+}

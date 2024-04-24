@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습1 탭컨텐츠</title>
+  <style>
+    #tab_con *{margin: 0px; padding: 0px;}
+    #tab_con{
+      width: 895px; height: 461px;
+      border: 3px solid #000;
+      position: relative; /*기준*/
+    }
+    #tab_con >h3{text-align: center; line-height: 46px; font-size: 26px;}
+    #tab_con >ul{
+      display: flex;
+    }
+    #tab_con >ul > li{
+      list-style: none;
+      width: 25%;text-align: center;
+    }
+    #tab_con >ul > li >a{
+      color: #333; text-decoration: none; 
+      display: block; line-height: 50px; 
+      border-bottom: 1px solid #333;
+    } 
+    #tab_con >ul > li >div{
+      width: 100%;
+      height: 364px;
+      position: absolute; bottom: 0px ; left: 0px; height: 364px;
+      display: none;
+    }
+    #tab_con >ul > li:first-child >div{background: #ffff52; display: block;}
+    #tab_con >ul > li:nth-child(2) >div{background: #ff8b8b;}
+    #tab_con >ul > li:nth-child(3) >div{background: #00ff62;}
+    #tab_con >ul > li:last-child >div{background: #00e1ff;}
+    .act{
+      font-weight: bold; 
+      border: 1px solid #333; 
+      border-bottom: none !important;
+    }
+  </style>
+  <script src="../제이쿼리/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      //변수선언
+      let tab_mnu = $('#tab_con a')
+
+      //2. 메뉴를 클릭시 해당 컨텐츠가 나오게 한다.
+      tab_mnu.click(function(e){
+        e.preventDefault();
+        $('.con').hide(); //보이는컨텐츠 숨긴다
+        $(this).next().show();
+
+        //siblings는 형제인데 지금 선택하는게 부모요소를 찾아서 부모의 형제를에 있는  왜 안지워지지 - 선택한건li태그여서 li엔 act가 없으니 자식인a를 선택해야했다
+        // $(this).parent().siblings().find('a').removeClass('act')
+        // $(this).addClass('act');
+
+        //선택한 메뉴에 서식을 적용하기 그외 다른 a요소에 서식을 제거한다. 선생님 정답
+        $(this).addClass('act').parent().siblings().find('a').removeClass('act')
+        // return false;//위에 e preventDfault 쓰기 싫으면 이거쓰기 새로고침 방지
+      })
+    })
+  </script>
+</head>
+<body>
+  <h2>제이쿼리 문서객체모델 _ 실습_ 탭컨텐츠</h2>
+  <p>노랑풍선, 네이버... 기타메뉴 클릭시 해당영역에서만 변경되는 탭메뉴 컨텐츠를 구현해본다</p>
+  <h3>노랑풍선 사이트늬 해외여행 패키지 괌 페이지의 탭메뉴 ㅓㄴ텐츠</h3>
+  <p>탭메뉴 컨테ㄴ츠는 메뉴 클릭시 해당하는 컨텐츠가 바로아래 나오면서 기존 컨텐츠는 숨겨지고, 영역안에서만 변경되는 컨텐츠이다.</p>
+  <p>사용이유?? - 특정영역에서만 보여지기 때문에 좁은 공간에서 많은 콘텐츠를 보여주고자 할 때 사용</p>
+
+
+  <dl>
+    <dt>구현방법</dt>
+    <dd>1. html 목록태그를 사용하여 목록(li)에 a 요소 4개와 div 요소를 사용하여 컨텐츠영역 4개를 만들고 css를 활용하여 첫번째 컨텐츠만 보이도록 스타일 서식 지정한다.</dd>
+    <dd>2. tab메뉴(a요소)를 클릭하면 해당 컨텐츠 div가 보이도록 하고, 나머지 컨텐츠들은 숨긴다. 이때 addClass()메소드를 사용한다</dd>
+    <dd>3. 메뉴 서식은 선택한 메뉴에만 적용되도록 하고, 그외 나머지 메뉴는 적용된 서식을 제거한다 (removeClass)</dd>
+    <p></p>
+    <p>this.next().show()</p>
+  </dl>
+
+  <p>하용할 메서드 - addClass(). removeClass(), sibling(), find(), css(), parent(), sibling()</p>
+
+  <article id="tab_con">
+    <h3>테마로 만나는 패키지 여행</h3>
+    <ul>
+      <li><a href="#" title="소아동반" class="act">소아동반</a><div class="con"></div></li>
+      <li><a href="#" title="워터파크">워터파크</a><div class="con"></div></li>
+      <li><a href="#" title="가성비값">가성비값</a><div class="con"></div></li>
+      <li><a href="#" title="시내중심">시내중심</a><div class="con"></div></li>
+    </ul>
+  </article>
+</body>
+</html>

@@ -1,0 +1,75 @@
+@charset "utf-8";
+/**/
+*{
+  margin: 0px; padding: 0px;
+}
+body{line-height: 24px;}
+
+h2,h3,p{
+  padding: 15px; font-weight: bold;
+}
+
+ul{
+  width: 800px; border: 1px solid #000; 
+  background-color: #ccc; padding: 10px;
+}
+
+ul > li{
+  background-color: #fff565; 
+  border: 1px solid #ff4949;
+  list-style: none;
+  width: 180px; line-height: 60px;
+}
+/*1번방식으로 가로배치*/
+/*장점 : 가로배치  / 단점: 블럭요소가 아니므로 크기값이 사라진다 (패딩값으로 크기지정가능)*/
+.list01 > li{
+  display: inline;
+  padding: 20px 118px 20px 0px;
+  margin: 5px;
+  /* 답 : list01에 text aline center을 적용한다*/
+}
+
+/*2번 방식으로 가로배치*/
+/*장점:가로방향배치, 크기값유지
+  단점: 인라인 성격도 가지기 때문에 약간의 틈이 생긴다
+*/
+.list02 > li{
+  display: inline-block;
+  margin: 0px 6px;
+  /*1번이랑 똑같이 부모요소에 textaline center을 준다*/
+}
+
+/*3번 방식으로 가로배치*/
+/*
+-장점 : 여백을 주지 않고 옆으로 딱 달라붙게 가로방향 배치
+-단점 : 부모가 자손의 영역을 인시갛지 못함, 아래 다른요소가 현재 영역을 침범함.
+
+해결방법 1 : float 속성ㄹ르 적용한 요소의 다음요소에 clear 속성 적용(다음 요소가 제자리를 찾아감
+해결방법 2 :  클리어 픽스를 사용해서 부모높이 해결  예 ) 부모요소::after{display: block;clear: both;content: "";}
+*/
+.list03::after{
+  /*클리어 픽스 라고 부른다 */
+  display: block;
+  clear: both;
+  content: "";
+}
+.list03 > li{ float: left; margin: 0px 8px;}
+
+/*4번째 방식으로 가로배치*/
+/*
+-장점 : 완벽한 수평/ 수직 정렬, 여백이 있어서 레이아웃이 깨지지 않음. 부모 노피가 살아있음
+-단점 : ms사의 웹브라우저 IE10이하에서는 인식이 안됨 
+flex 참조 사이트 - httpx://studiomeal.com/archeves/197
+*/
+.list04{display: flex; justify-content: space-evenly;}
+
+/*5번 방식으로 가로배치*/
+/*display : grid
+-장점 : display:flex 속성보다 가로, 세로배치가 가능하다. (2차원 예시 ) 상품목록,)
+-단점 : 속성의 종류가 너무 많아 복잡한면이 있다. 
+*/
+.list05{
+  display: grid; 
+  grid-template-columns: repeat(4,auto);/*열개수*/
+  /*grid-template-rows: repeat(4,auto);줄개수*/
+  }
